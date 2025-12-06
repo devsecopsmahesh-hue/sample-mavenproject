@@ -25,5 +25,16 @@ pipeline {
                 sh 'mvn compile'
             }
         }
+        stage('Unit Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                sh 'mvn package -DskipTests'
+            }
+        }
     }
 }
