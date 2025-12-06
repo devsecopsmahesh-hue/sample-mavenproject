@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    tools {
+        maven 'maven-3.9.11'        // Jenkins Tool Name
+        jdk 'jdk17'             // Jenkins Tool Name
+    }
 
     stages {
 
@@ -7,6 +11,18 @@ pipeline {
             steps {
                 git branch: 'main',
                     url: 'https://github.com/devsecopsmahesh-hue/sample-mavenproject.git'
+            }
+       
+        }
+    stage('Clean') {
+            steps {
+                sh 'mvn clean'
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                sh 'mvn compile'
             }
         }
     }
